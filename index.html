@@ -2,9 +2,67 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>GameZone</title>
+    <title>Title</title>
 </head>
 <body>
-This is GameZone homepage. Made by Macbook.
+<div id="app">
+    <p>{{ title }}</p>
+    <p>{{ content }}</p>
+    <p>{{output()}}</p>
+    <p>{{output()}}</p>
+    <p>{{output()}}</p>
+    <p>{{outputComputed}}</p>
+    <p>{{outputComputed}}</p>
+    <p>{{outputComputed}}</p>
+
+    <p v-text="title">111</p>
+    <p v-html="contentHTML">222</p>
+
+    <p v-for="item in 5">{{ item }}</p>
+
+    <p v-if="bool">8888</p>
+    <p v-show="bool">999</p>
+
+    <input type="text" v-model="inputValue" />
+    <p>{{inputValue}}</p>
+    <button v-on:click="change">Button</button>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data(){
+            return{
+                title:"This is a title",
+                content:"This is a text",
+                contentHTML:"This is <font color='red'>a</font> text",
+                bool:false,
+                inputValue:"默认内容"
+            }
+        },
+        methods:{
+            output(){
+                console.log("methods执行了")
+                return 'title is: ' + this.title
+            },
+            change(){
+                console.log("change执行了")
+                this.title='090807'
+            }
+        },
+        //计算属性，具有缓存性
+        computed: {
+            outputComputed(){
+                console.log("computed执行了")
+                return 'title is: ' + this.title
+            }
+        },
+        watch:{
+            content(newValue, oldValue){
+                console.log(newValue,oldValue)
+            }
+        }
+    })
+</script>
 </body>
-</html>ß
+</html>
